@@ -135,10 +135,10 @@ int main(int argc, char **argv)
             break;
         case 2:
             system("cls");
-            cout << "Your nikename: " << player.base.name << "\n"; 
+            cout << "Your nickname: " << player.base.name << "\n"; 
             cout << "Your score: " << player.score << "\n";
             cout << "Your power: " << player.power << "\n";
-            cout << "You killed " << player.killed_sum << " monsters";
+            cout << "You killed " << player.killed_sum << " monster";
             if (player.killed_sum > 1)
                 cout << 's';
             cout << '\n';
