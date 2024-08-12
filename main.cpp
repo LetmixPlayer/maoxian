@@ -33,6 +33,7 @@ void adv()
 {
     while (1)
     {
+        system("color");
         system("cls");
         output("On the adventure...");
         system("pause > nul");
@@ -60,15 +61,16 @@ void adv()
                     }
                     else
                     {
+                        system("color 40");
                         player.game_over();
                         output("Game Over...");
                         system("pause > nul");
                         break;
+                        system("color");
                     }
                 }
                 else if (a == 2)
                 {
-                    player.game_over();
                     output("Runned away...");
                     system("pause > nul");
                     break;
@@ -92,6 +94,7 @@ void adv()
         }
         write(player);
     cont:
+        system("color");
         system("cls");
         output("1. Continue");
         output("2. End");
@@ -120,14 +123,16 @@ int main(int argc, char **argv)
     system("pause > nul");
     while (1)
     {
+        system("color F3");
         system("cls");
         cout << "Hello! " << player.base.name << '\n';
         cout << "1. Start adventure\n";
         cout << "2. Your infomation\n";
         cout << "3. Save\n";
-        cout << "4. Exit\n";
+        cout << "4. Settings\n";
+        cout << "5. Exit\n";
         cin >> n;
-        switch (n) 
+        switch (n)
         {
         case 1:
             load(player);
@@ -135,7 +140,7 @@ int main(int argc, char **argv)
             break;
         case 2:
             system("cls");
-            cout << "Your nickname: " << player.base.name << "\n"; 
+            cout << "Your nickname: " << player.base.name << "\n";
             cout << "Your score: " << player.score << "\n";
             cout << "Your power: " << player.power << "\n";
             cout << "You killed " << player.killed_sum << " monster";
@@ -152,6 +157,48 @@ int main(int argc, char **argv)
             system("pause > nul");
             break;
         case 4:
+        setting:
+            system("color F4");
+            system("cls");
+            cout << "Setting Options\n";
+            cout << "1. Rename\n";
+            cout << "2. Restart game\n";
+            cout << "3. About";
+            cin >> n;
+            switch (n)
+            {
+            case 1:
+                cout << "Enter your new nickname:";
+                cin >> player.base.name;
+                if (write(player))
+                    return 255;
+                break;
+            case 2:
+            restart:
+                cout << "Are you agree to restart game?\n";
+                cout << "Your archive will be delete if you restart game!\n";
+                cout << "1. I am agree\n";
+                cout << "2. I am not agree\n";
+                cin >> n;
+                if (n == 1)
+                {
+                    system("del mxsaves");
+                    return 0;
+                }
+                else if (n == 2)
+                    break;
+                else
+                    goto restart;
+            case 3:
+                output("Adventure game 1.0.3");
+                break;
+            default:
+                output("Invalid option...");
+                system("pause > nul");
+                goto setting;
+            }
+            goto setting;
+        case 5:
             if (write(player))
                 return 255;
             return 0;

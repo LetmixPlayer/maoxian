@@ -4,16 +4,20 @@
 
 #ifndef MX_PLAYER
 #define MX_PLAYER 1
-struct Player {
+struct Player
+{
     ObjectiveBase base;
     int power = 10, killed_sum = 0, score = 0;
-    Player() {
+    Player()
+    {
         base.type = "Player";
     }
-    void rename(std::string newname) {
+    void rename(std::string newname)
+    {
         base.name = newname;
     }
-    void game_over() {
+    void game_over()
+    {
         power -= random(3);
         if (score - 10 < 0)
             score = 0;
@@ -22,7 +26,8 @@ struct Player {
         if (power < 10)
             power = 10;
     }
-    void you_win() {
+    void you_win()
+    {
         power += random(10);
         killed_sum++;
         score += random(5);
